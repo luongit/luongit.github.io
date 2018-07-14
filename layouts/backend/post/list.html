@@ -1,0 +1,46 @@
+
+<h3 class="card-title text-white">Danh sách bài viết</h3>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item"> 
+	<a class="nav-link active" data-toggle="tab" href="#!/post" >
+		<span class="hidden-xs-down">Danh sách</span>
+	</a> 
+</li>
+<li class="nav-item"> <a class="nav-link" href="#!/post-add"><span class="hidden-xs-down">Thêm mới</span></a></li>
+</ul>
+<!-- Tab panes -->
+
+<div class="card-body" ng-show="posts.message">
+	{{posts.message}}
+</div>
+<div class="card-body" style="padding-left: 0;padding-right: 0">
+	<table datatable class="table table-bordered table-striped" ng-hide="posts.message">
+		<thead>
+			<tr>
+				<th>Tên bài viết</th>
+				<th>Ngày tạo</th>
+				<th>Ngày tạo</th>
+				<th>Trạng thái</th>
+				<th></th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr ng-repeat="post in posts.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:search">
+					<td>{{post.name}}</td>
+					<td>{{post.crated_at | date:"dd/MM/yyyy"}}</td>
+					<td> 
+						<span class="label label-success" ng-show="post.status == 1">Kích hoạt</span>
+						<span class="label label-danger" ng-show="post.status == 0">Ngừng</span>
+					</td>
+					<td width="200" align="center">
+						<a href="#!/post-edit/{{post._id}}" class="btn btn-sm btn-success">Sửa</a>
+						<a href="" class="btn btn-sm btn-danger" ng-click="del_post(post._id)">Xóa</a>
+					</td>
+				</tr>
+		</tbody>
+	</table>
+	Hiển thị <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> dòng
+    <pagination total-items="totalItems" ng-model="currentPage" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
+</div>
+

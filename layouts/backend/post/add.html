@@ -1,0 +1,96 @@
+
+<h3 class="card-title text-white">Danh sách bài viết</h3>
+<!-- Nav tabs -->
+<div class="form-actions">
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item"> 
+			<a class="nav-link" data-toggle="tab" href="#!/post">
+				<span class="hidden-xs-down">Danh sách</span>
+			</a> 
+		</li>
+		<li class="nav-item"> 
+			<a class="nav-link active" href="#!/post-add">
+				<span class="hidden-xs-down">Thêm mới</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<!-- Tab panes -->
+<div class="card-body" style="padding-left: 0;padding-right: 0">
+	<form action="#" class="form-bordered" name="postF">
+        <div class="form-body row">
+		<div class="col-md-9">
+			<div class="form-group">
+            <label class="control-label">Tên bài viết</label>
+            <input placeholder="Tên bài viết" class="form-control" type="text" name="name" ng-model="post.name" required name-available ng-model-options="{ updateOn: 'blur' }">
+			<div class="help-block" ng-messages="postF.name.$error" ng-if="postF.name.$dirty || postF.$error.nameAvailable">
+			    <p ng-message="required">Bạn phải nhập tên bài viết</p>
+			    <p ng-message="nameAvailable">Bài viết đã tồn tại trong dữ liệu</p>
+			</div>
+          </div>
+          
+          <div class="form-group">
+            <label class="control-label">Nội dung</label>
+            <textarea ng-model="post.content" name="content" ui-tinymce="tinymceOptions" class="form-control" rows="3" required></textarea>
+			<div class="help-block" ng-messages="postF.content.$error" ng-if="postF.content.$dirty">
+			    <p ng-message="required">Vui lòng nhập nội dung bài viếtt</p>
+			</div>
+          </div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+            <label class="control-label">Danh mục</label>
+            <select ng-model="post.category_id"class="form-control custom-select" name="category_id" required>
+				<option value="">Chọn danh mục</option>
+				<option value="{{cat._id}}" ng-repeat="cat in categories">{{cat.name}}</option>
+			</select>
+			<div class="help-block" ng-messages="postF.category_id.$error" ng-if="postF.category_id.$dirty">
+			    <p ng-message="required">Vui lòng chọn danh mục bài viết</p>
+			</div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Link video</label>
+            <input placeholder="Link video" class="form-control" type="text" name="name" ng-model="post.video" required >
+			<div class="help-block" ng-messages="postF.name.$error" ng-if="postF.name.$dirty">
+			    <p ng-message="required">Bạn phải nhập tên bài viết</p>
+			</div>
+          </div>
+          <div class="form-group">
+	        <label class="control-label">Kiểu video</label>
+	        <select class="form-control custom-select" ng-model="post.video_type" name="video_type" required>
+	            <option value="">Chọn kiểu video</option>
+	            <option value="1" selected>Youtube id</option>
+	            <option value="2">Google Drive id</option>
+	          </select>
+	          <div class="help-block" ng-messages="postF.video_type.$error" ng-if="postF.video_type.$dirty">
+				    <p ng-message="required">Hãy chọn kiểu video</p>
+				</div>
+	      </div>
+          <div class="form-group">
+            <label class="control-label">Ảnh bài viết</label>
+            <input placeholder="Ảnh bài viết" class="form-control" name="image" required ng-model="image">
+			<div class="help-block" ng-messages="postF.image.$error" ng-if="postF.image.$dirty">
+			    <p ng-message="required">Bạn phải nhập tên bài viết</p>
+			</div>
+          </div>
+          <div class="form-group">
+	        <label class="control-label">Trạng thái</label>
+	        <select class="form-control custom-select" ng-model="post.status" name="status" required>
+	            <option value="">Chọn trạng thái</option>
+	            <option value="0">Ẩn</option>
+	            <option value="1" selected>Hiển thị</option>
+	          </select>
+	          <div class="help-block" ng-messages="postF.status.$error" ng-if="postF.status.$dirty">
+				    <p ng-message="required">Hãy chọn trạng thái</p>
+				</div>
+	      </div>
+		</div>
+          
+	        <div class="form-actions">
+	          <div class="col-md-12">
+	            <button type="button" class="btn btn-success" ng-click="add_post()" ng-disabled="!postF.name.$dirty || postF.name.$invalid || !postF.status.$dirty || postF.status.$invalid  || !postF.category_id.$dirty || postF.category_id.$invalid || postF.$error.nameAvailable"> Thêm mới</button>
+	          </div>
+	        </div>
+        </div>
+      </form>
+</div>

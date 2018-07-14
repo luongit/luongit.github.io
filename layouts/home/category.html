@@ -1,0 +1,45 @@
+<div class="row">
+<div class="col-lg-4 m-b-3">
+    <div> 
+      <!-- Widget: user widget style 1 -->
+      <div class="box box-widget widget-user-2"> 
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-yellow">
+          <h3>{{cat.name}}</h3>
+          <h5>Danh sách các bài viết</h5>
+        </div>
+        <ul class="products-list product-list-in-box" style="height: 500px; overflow-y: auto">
+          <li class="item" ng-repeat="item in posts">
+            <div class="product-img"> <img src="public/img/icon-100x100.png" alt="Product Image"> </div>
+            <div class="product-info"> <a ng-href="#!/post/{{item._id}}" class="product-title">{{item.name}}</a> <span class="product-description"> <a ng-href="#!/post/{{item._id}}">Ngày đăng: {{item.crated_at | date:"dd/MM/yyyy"}}</a></span> </div>
+          </li>
+          <!-- /.item -->
+          <!-- /.item -->
+        </ul>
+      </div>
+      <!-- /.widget-user --> 
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="box box-widget">
+      <div class="box-header with-border" ng-show="posts.length">
+        <div class="user-block"> <img class="img-circle" src="public/img/icon-100x100.png" alt="User Image"> <span class="username"><a href="#">{{post.name}}</a></span> <span class="description">Ngày đăng: {{post.crated_at | date:"dd/MM/yyyy"}} ( Nếu video không hiển thị vui lòng nhấn F5 vài lần ) * </span> </div>
+      </div>
+      <div class="box-header with-border" ng-hide="posts.length">
+        <div class="user-block"> <img class="img-circle" src="public/img/icon-100x100.png" alt="User Image"> <span class="username"><a href="#">Chưa có dữ liệu</a></span> <span class="description">Danh mục bạn quan tâm hiện tại chưa có dữ liệu</span> </div>
+      </div>
+      <div class="box-body"> 
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" id="player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ng-show="post.video_type == 1"></iframe>
+          <iframe src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ng-show="post.video_type == 2" id="gplayer"></iframe>
+
+        </div>
+      <!--   <iframe src="https://drive.google.com/file/d/1OtxaNNuNj7xzbToMdNPj0fcxpVttSFbr/preview" width="640" height="480"></iframe> -->
+       <div class="box-header with-border" ng-show="posts.length">
+          <div class="user-block"> <img class="img-circle" src="public/img/icon-100x100.png" alt="User Image"> <span class="username"><a href="" title="">Nội dung</a></span>
+            <div class="description" ng-bind-html="post.content"></div> 
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

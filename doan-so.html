@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trò Chơi Đoán Số</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .game-doan-so {
+            text-align: center;
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 200px;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game-doan-so">
+        <h1>Trò Chơi Đoán Số</h1>
+        <p>Tôi đã chọn một số ngẫu nhiên từ 1 đến 100. Hãy thử đoán xem!</p>
+        <input type="number" id="guessInput" placeholder="Nhập số bạn đoán" />
+        <button onclick="submitGuess()">Đoán</button>
+        <button onclick="restartGame()">Chơi Lại</button>
+        <div id="message"></div>
+        <h3 id="attempts"></h3>
+    </div>
+
+    <div class="container">
+        <h1>Danh Sách Game Vui</h1>
+        <div class="game-list">
+            <!-- Mỗi game là một item -->
+            <div class="game-item">
+                <h2>Game Đoán Số</h2>
+                <p>Đoán số mà máy tính đã chọn. Thử xem bạn có thể đoán đúng trong bao nhiêu lần!</p>
+                <a class="startGame" href="doan-so.html">Chơi Ngay</a>
+            </div>
+            <div class="game-item">
+                <h2>Game Đuổi Hình Bắt Chữ</h2>
+                <p>Đoán chữ trong từ bí mật bằng cách chọn các chữ cái. Thách thức trí nhớ của bạn!</p>
+                <a class="startGame" href="nhin-hinh-doan-chu.html">Chơi Ngay</a>
+            </div>
+            <div class="game-item">
+                <h2>Game Nhớ Hình Ảnh</h2>
+                <p>Đi Hiển thị một loạt hình ảnh trong vài giây. Người chơi phải nhớ và chọn đúng thứ tự của các hình
+                    ảnh khi được hỏi.!</p>
+                <a class="startGame" href="nho-hinh-anh.html">Chơi Ngay</a>
+            </div>
+            <div class="game-item">
+                <h2>Game Phản Xạ</h2>
+                <p>Kiểm tra tốc độ phản xạ của bạn bằng cách nhấn nút khi màn hình thay đổi màu sắc.</p>
+                <a class="startGame" href="phan-xa.html">Chơi Ngay</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        let secretNumber;
+        let attempts;
+
+        // Khởi tạo trò chơi
+        function startGame() {
+            secretNumber = Math.floor(Math.random() * 100) + 1; // Số ngẫu nhiên từ 1 đến 100
+            attempts = 0;
+            document.getElementById('message').innerText = '';
+            document.getElementById('guessInput').value = '';
+        }
+
+        // Xử lý khi người chơi đoán
+        function submitGuess() {
+            const guess = parseInt(document.getElementById('guessInput').value, 10);
+            if (isNaN(guess)) {
+                document.getElementById('message').innerText = 'Vui lòng nhập một số hợp lệ!';
+                return;
+            }
+
+            attempts++;
+            document.getElementById('attempts').innerText = 'Lần thứ ' + attempts;
+
+            if (guess < secretNumber) {
+                document.getElementById('message').innerText = 'Số bạn đoán nhỏ hơn số bí mật. Thử lại!';
+            } else if (guess > secretNumber) {
+                document.getElementById('message').innerText = 'Số bạn đoán lớn hơn số bí mật. Thử lại!';
+            } else {
+                document.getElementById('message').innerText =
+                    `Chúc mừng! Bạn đã đoán đúng số ${secretNumber} sau ${attempts} lần thử!`;
+            }
+        }
+
+        // Khởi động lại trò chơi
+        function restartGame() {
+            startGame();
+        }
+
+        // Bắt đầu trò chơi lần đầu
+        startGame();
+    </script>
+</body>
+
+</html>

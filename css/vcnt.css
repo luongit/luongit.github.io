@@ -1,0 +1,113 @@
+#game-over{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    flex-direction: column;
+    transform: scale(0);
+}
+#game-over h1 {
+    color: #fff;
+}
+.game-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 600px;
+    margin-top: 25px;
+    position: relative;
+}
+.main-game {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+.item {
+    width: 50%;
+}
+#word-display {
+    font-size: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+}
+
+#letters-container {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#letters-container span {
+    font-size: 20px;
+    margin: 0 5px;
+    padding: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+button:disabled {
+    background-color: #ccc;
+}
+
+#message {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#reset-button {
+    background-color: #17a2b8;
+    margin-top: 20px;
+}
+
+.letter {
+    display: inline-block;
+    font-size: 20px;
+    margin: 5px;
+    padding: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.letter:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+#letter-input {
+    padding: 7px    10px;
+}
+
+#show_image {
+    width: 80%;
+    margin: 15px auto;
+    border-radius: 20px;
+    border: 2px solid green;
+}
+
+.img {
+    display: flex;
+    gap: 15;
+    padding: 10px;
+}
+
+.img img {
+    width: 100%;
+    border: 1px solid blue;
+}

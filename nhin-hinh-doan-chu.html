@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guessing Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/vcnt.css">
+</head>
+
+<body>
+    <div class="game-container">
+        <div id="game-over">
+           <h1>GAME OVER</h1>
+           <button onclick="location.reload()"">Chơi lại</button>
+        </div>
+        <div class="header">
+            <h1>Word Guessing Game</h1>
+            <h1 id="time">30</h1>
+        </div>
+        <div class="img">
+            <img src="images/apple.webp" alt="">
+            <img src="images/banana.avif" alt="">
+            <img src="images/cherry.jpg" alt="">
+            <img src="images/coconut.png" alt="">
+            <img src="images/grape.webp" alt="">
+            <img src="images/orange.jpg" alt="">
+            <img src="images/tomato.jpg" alt="">
+        </div>
+        <div class="main-game">
+            <div class="item">
+                <p>Đoán từ bằng cách chọn các chữ cái!</p>
+                <div id="word-display"></div>
+                <div id="letters-container">
+                    <!-- Các chữ cái sẽ được hiển thị ở đây -->
+                </div>
+                <p>Nhập chữ cái của bạn: <br /><input type="text" id="letter-input" maxlength="1" />
+                    <button id="guess-button">Đoán</button>
+                </p>
+            </div>
+
+            <div class="item">
+                <p id="message"></p>
+                <p>Điểm số: <span id="score">0</span></p>
+                <img src="" id="show_image" alt="">
+                <button id="reset-button">Chơi lại</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Danh Sách Game Vui</h1>
+        <div class="game-list">
+            <!-- Mỗi game là một item -->
+            <div class="game-item">
+                <h2>Game Đoán Số</h2>
+                <p>Đoán số mà máy tính đã chọn. Thử xem bạn có thể đoán đúng trong bao nhiêu lần!</p>
+                <a class="startGame" href="doan-so.html">Chơi Ngay</a>
+            </div>
+            <div class="game-item">
+                <h2>Game Đuổi Hình Bắt Chữ</h2>
+                <p>Đoán chữ trong từ bí mật bằng cách chọn các chữ cái. Thách thức trí nhớ của bạn!</p>
+                <a class="startGame" href="nhin-hinh-doan-chu.html">Chơi Ngay</a>
+            </div>
+            <div class="game-item">
+                <h2>Game Nhớ Hình Ảnh</h2>
+                <p>Đi Hiển thị một loạt hình ảnh trong vài giây. Người chơi phải nhớ và chọn đúng thứ tự của các hình ảnh khi được hỏi.!</p>
+                <a class="startGame" href="nho-hinh-anh.html">Chơi Ngay</a>
+            </div>
+            <div class="game-item">
+                <h2>Game Phản Xạ</h2>
+                <p>Kiểm tra tốc độ phản xạ của bạn bằng cách nhấn nút khi màn hình thay đổi màu sắc.</p>
+                <a class="startGame" href="phan-xa.html">Chơi Ngay</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/vcnt.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioFresh - Thực Phẩm Hữu Cơ & Sống Xanh</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-green: #2d6a4f;
+            --primary-dark: #1b4332;
+            --primary-light: #52b788;
+            --accent-soft: #d8f3dc;
+            --accent-warm: #f4a261;
+            --accent-orange: #e76f51;
+            --bg-light: #f8faf7;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --card-border: rgba(45, 106, 79, 0.08);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-dark);
+            color: #d1fae5;
+            font-size: 0.825rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: var(--transition-smooth);
+        }
+
+        .navbar-brand-badge {
+            font-size: 0.65rem;
+            background: #2d6a4f;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark) !important;
+            padding: 8px 16px !important;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-green) !important;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+            right: 16px;
+            height: 2.5px;
+            background-color: var(--primary-green);
+            border-radius: 2px;
+        }
+
+        .nav-icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3f4f6;
+            color: var(--text-dark);
+            transition: var(--transition-smooth);
+            position: relative;
+            border: none;
+        }
+
+        .nav-icon-btn:hover {
+            background: var(--accent-soft);
+            color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        .badge-cart-count {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: var(--accent-orange);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #eaf5ec 0%, #f4fbf5 60%, #fff 100%);
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(82, 183, 136, 0.15) 0%, rgba(255,255,255,0) 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 30px;
+            background: rgba(45, 106, 79, 0.1);
+            color: var(--primary-green);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .hero-img-wrap {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-img {
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(45, 106, 79, 0.25);
+            object-fit: cover;
+            width: 100%;
+            max-height: 520px;
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 14px 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: floatSlow 4s ease-in-out infinite alternate;
+        }
+
+        .floating-badge-1 {
+            bottom: 30px;
+            left: -20px;
+        }
+
+        .floating-badge-2 {
+            top: 40px;
+            right: -10px;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatSlow {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-10px); }
+        }
+
+        /* Features strip */
+        .feature-card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            transition: var(--transition-smooth);
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(45, 106, 79, 0.08);
+            border-color: var(--primary-light);
+        }
+
+        .feature-icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: var(--accent-soft);
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        /* Category Card */
+        .category-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 20px 16px;
+            text-align: center;
+            border: 1px solid var(--card-border);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(45, 106, 79, 0.1);
+            border-color: var(--primary-light);
+            color: var(--primary-green);
+        }
+
+        .category-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 14px;
+            border: 3px solid #f0fdf4;
+            transition: var(--transition-smooth);
+        }
+
+        .category-card:hover .category-img {
+            transform: scale(1.08);
+            border-color: var(--primary-light);
+        }
+
+        /* Product Card */
+        .product-card {
+            background: #ffffff;
+            border-radius: 22px;
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.07);
+            border-color: rgba(45, 106, 79, 0.25);
+        }
+
+        .product-thumb-wrap {
+            position: relative;
+            padding-top: 80%;
+            background: #fbfbfb;
+            overflow: hidden;
+        }
+
+        .product-thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-thumb {
+            transform: scale(1.08);
+        }
+
+        .product-badge-organic {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #10b981;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .product-badge-sale {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent-orange);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 30px;
+            z-index: 2;
+        }
+
+        .quick-action-btns {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            transition: var(--transition-smooth);
+            z-index: 2;
+        }
+
+        .product-card:hover .quick-action-btns {
+            bottom: 8px;
+        }
+
+        .quick-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ffffff;
+            color: var(--text-dark);
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .quick-btn:hover {
+            background: var(--primary-green);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .product-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category-name {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--primary-green);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .product-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .rating-stars {
+            color: #fbbf24;
+            font-size: 0.8rem;
+        }
+
+        .price-current {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-green);
+        }
+
+        .price-old {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+        .unit-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+
+        .btn-add-cart {
+            background: #f0fdf4;
+            color: var(--primary-green);
+            border: 1px solid rgba(45, 106, 79, 0.2);
+            border-radius: 12px;
+            padding: 9px 14px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: var(--transition-smooth);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--primary-green);
+            color: #ffffff;
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        /* Filter Pills */
+        .filter-btn {
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            color: var(--text-muted);
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-green);
+            color: #ffffff;
+            border-color: var(--primary-green);
+            box-shadow: 0 4px 14px rgba(45, 106, 79, 0.25);
+        }
+
+        /* Banner Deal Section */
+        .deal-banner {
+            background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+            color: #ffffff;
+            border-radius: 32px;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deal-banner::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 12px 18px;
+            text-align: center;
+            min-width: 72px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .countdown-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #d1fae5;
+            margin-top: 4px;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            position: relative;
+            height: 100%;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-family: serif;
+            font-size: 5rem;
+            color: var(--accent-soft);
+            position: absolute;
+            top: 10px;
+            right: 24px;
+            line-height: 1;
+            opacity: 0.6;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Offcanvas Cart */
+        .cart-item-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .cart-item-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .qty-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            border: 1px solid #d1d5db;
+            background: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .qty-btn:hover {
+            background: var(--accent-soft);
+            border-color: var(--primary-light);
+        }
+
+        /* Newsletter */
+        .newsletter-box {
+            background: #d8f3dc;
+            border-radius: 32px;
+            padding: 50px 30px;
+            position: relative;
+        }
+
+        /* Footer */
+        .footer-dark {
+            background-color: #12281e;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .footer-dark a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-dark a:hover {
+            color: #52b788;
+            padding-left: 4px;
+        }
+
+        .footer-social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            margin-right: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-social-btn:hover {
+            background: var(--primary-light);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* Toast container */
+        .toast-container {
+            z-index: 1090;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="top-bar py-2 text-center">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <span class="d-none d-md-inline"><i class="bi bi-patch-check-fill text-warning me-1"></i> Chứng nhận nông sản Hữu cơ 100% chuẩn Quốc tế (USDA & EU Organic)</span>
+            <div class="mx-auto mx-md-0 d-flex align-items-center gap-3">
+                <span><i class="bi bi-truck me-1"></i> Miễn phí vận chuyển đơn từ 299k</span>
+                <span class="text-white-50">|</span>
+                <a href="#hotline" class="text-white text-decoration-none"><i class="bi bi-telephone-fill me-1"></i> Hotline: 1900 888 686</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top py-3">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <span class="bg-success text-white rounded-circle p-2 d-inline-flex align-items-center justify-content-center shadow-sm" style="width: 40px; height: 40px;">
+                    <i class="bi bi-flower1 fs-5"></i>
+                </span>
+                <div>
+                    <span class="fw-bold fs-4 text-success" style="font-family: 'Playfair Display', serif;">BioFresh</span>
+                    <span class="navbar-brand-badge ms-1">Organic</span>
+                </div>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <i class="bi bi-list fs-1 text-success"></i>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Danh Mục</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Sản Phẩm Tươi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#deal">Ưu Đãi Hôm Nay</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Về Nông Trại</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reviews">Đánh Giá</a>
+                    </li>
+                </ul>
+
+                <!-- Action Icons -->
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <!-- Search Input Trigger -->
+                    <button class="nav-icon-btn" data-bs-toggle="modal" data-bs-target="#searchModal" title="Tìm kiếm">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <!-- Wishlist button -->
+                    <button class="nav-icon-btn" onclick="showToast('Tính năng yêu thích đã được ghi nhận!')" title="Yêu thích">
+                        <i class="bi bi-heart"></i>
+                    </button>
+                    <!-- Cart Button (Drawer Trigger) -->
+                    <button class="nav-icon-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" title="Giỏ hàng">
+                        <i class="bi bi-bag"></i>
+                        <span class="badge-cart-count" id="cartBadgeCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+        <div class="container position-relative" style="z-index: 1;">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="hero-pill mb-3">
+                        <i class="bi bi-stars"></i> Thu hoạch tươi mới trong ngày từ nông trại Đà Lạt
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4 text-dark" style="line-height: 1.2;">
+                        Mang Tinh Hoa <span class="text-success">Thiên Nhiên Thuần Khiết</span> Đến Bữa Cơm Gia Đình
+                    </h1>
+                    <p class="lead text-muted mb-4 fs-6">
+                        Cam kết 100% không phân bón hoá học, không thuốc bảo vệ thực vật, không chất bảo quản. Nguồn thực phẩm xanh lành được chứng nhận USDA & EU Organic vì sức khỏe bền lâu của bạn.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="#products" class="btn btn-success btn-lg px-4 py-3 rounded-pill fw-semibold shadow-sm d-inline-flex align-items-center gap-2">
+                            Mua Sắm Ngay <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="#about" class="btn btn-outline-dark btn-lg px-4 py-3 rounded-pill fw-semibold">
+                            Quy Trình Trồng Trọt
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-center gap-4 pt-3 border-top">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fs-4 fw-bold text-success">15,000+</span>
+                            <span class="text-muted small lh-sm">Khách hàng<br>tin dùng</span>
+                        </div>
+                        <div class="vr"></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fs-4 fw-bold text-success">100%</span>
+                            <span class="text-muted small lh-sm">Hữu cơ<br>chứng nhận</span>
+                        </div>
+                        <div class="vr"></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fs-4 fw-bold text-success">2 Giờ</span>
+                            <span class="text-muted small lh-sm">Giao hàng<br>nội thành</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 hero-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Rau củ hữu cơ tươi ngon" class="hero-img img-fluid">
+                    
+                    <!-- Floating Badge 1 -->
+                    <div class="floating-badge floating-badge-1">
+                        <div class="bg-success text-white rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                            <i class="bi bi-shield-check fs-5"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold small text-dark">Chứng nhận USDA</div>
+                            <div class="text-muted" style="font-size: 0.75rem;">100% Không hoá chất</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge 2 -->
+                    <div class="floating-badge floating-badge-2">
+                        <div class="bg-warning text-dark rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                            <i class="bi bi-award-fill fs-5"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold small text-dark">4.9 / 5.0 Sao</div>
+                            <div class="text-muted" style="font-size: 0.75rem;">Hơn 2,800 đánh giá 5★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BADGES / FEATURES -->
+    <section class="py-5 bg-white border-bottom">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">100% Nguồn Gốc Tự Nhiên</h5>
+                        <p class="text-muted small mb-0">Trồng tại nông trại công nghệ sinh học khép kín, chuẩn GlobalGAP & Organic.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Giao Hỏa Tốc 2 Giờ</h5>
+                        <p class="text-muted small mb-0">Đóng gói thùng giữ nhiệt chuyên dụng bảo toàn tối đa độ tươi giòn và dinh dưỡng.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-recycle"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Bao Bì Thân Thiện</h5>
+                        <p class="text-muted small mb-0">100% túi giấy Kraft và màng bọc phân huỷ sinh học từ bột ngô thiên nhiên.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Đổi Trả Trong 48h</h5>
+                        <p class="text-muted small mb-0">Nếu không hài lòng về độ tươi hay dập nát, hoàn tiền hoặc đổi ngay 1-1 không câu hỏi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="py-5" id="categories">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-semibold mb-2">Danh Mục Lựa Chọn</span>
+                <h2 class="fw-bold display-6">Khám Phá Các Nhóm Thực Phẩm</h2>
+                <p class="text-muted">Đa dạng lựa chọn cho bữa ăn gia đình lành mạnh & tràn đầy năng lượng</p>
+            </div>
+
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4 justify-content-center">
+                <div class="col">
+                    <a href="#products" class="category-card" onclick="filterCategory('vegetable')">
+                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=250&q=80" alt="Rau củ hữu cơ" class="category-img">
+                        <h6 class="fw-bold mb-1">Rau Lá & Củ</h6>
+                        <small class="text-muted">45+ loại</small>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#products" class="category-card" onclick="filterCategory('fruit')">
+                        <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=250&q=80" alt="Trái cây tươi" class="category-img">
+                        <h6 class="fw-bold mb-1">Trái Cây Tươi</h6>
+                        <small class="text-muted">38+ loại</small>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#products" class="category-card" onclick="filterCategory('nuts')">
+                        <img src="https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=250&q=80" alt="Hạt dinh dưỡng" class="category-img">
+                        <h6 class="fw-bold mb-1">Hạt & Ngũ Cốc</h6>
+                        <small class="text-muted">26+ loại</small>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#products" class="category-card" onclick="filterCategory('drinks')">
+                        <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=250&q=80" alt="Đồ uống organic" class="category-img">
+                        <h6 class="fw-bold mb-1">Nước Ép & Trà</h6>
+                        <small class="text-muted">19+ loại</small>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#products" class="category-card" onclick="filterCategory('spices')">
+                        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=250&q=80" alt="Gia vị & Mật ong" class="category-img">
+                        <h6 class="fw-bold mb-1">Gia Vị Thuần Chay</h6>
+                        <small class="text-muted">14+ loại</small>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#products" class="category-card" onclick="filterCategory('all')">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=250&q=80" alt="Combo gia đình" class="category-img">
+                        <h6 class="fw-bold mb-1">Combo Tuần</h6>
+                        <small class="text-muted">Tiết kiệm 25%</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SHOWCASE -->
+    <section class="py-5 bg-white" id="products">
+        <div class="container py-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
+                <div>
+                    <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-semibold mb-2">Thực Đơn Tươi Mới</span>
+                    <h2 class="fw-bold display-6 mb-1">Sản Phẩm Organic Nổi Bật</h2>
+                    <p class="text-muted mb-0">Thu hoạch thủ công vào mỗi sớm tinh sương</p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0" id="filterButtonGroup">
+                    <button class="filter-btn active" onclick="filterCategory('all', this)">Tất Cả</button>
+                    <button class="filter-btn" onclick="filterCategory('vegetable', this)">Rau Củ</button>
+                    <button class="filter-btn" onclick="filterCategory('fruit', this)">Trái Cây</button>
+                    <button class="filter-btn" onclick="filterCategory('nuts', this)">Hạt Dinh Dưỡng</button>
+                    <button class="filter-btn" onclick="filterCategory('drinks', this)">Nước Ép</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" id="productGridContainer">
+                <!-- Javascript will render products dynamically here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FLASH SALE & DEAL OF THE DAY -->
+    <section class="py-5" id="deal">
+        <div class="container py-3">
+            <div class="deal-banner">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-6">
+                        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold mb-3">
+                            <i class="bi bi-clock-history me-1"></i> ƯU ĐÃI NÔNG TRẠI CHỚP NHOÁNG
+                        </span>
+                        <h2 class="display-6 fw-bold mb-3">Combo Hộp Rau Củ Hữu Cơ Gia Đình (Tuần)</h2>
+                        <p class="text-light opacity-90 mb-4">
+                            Gồm 7 loại rau ăn lá chuẩn hữu cơ, cà chua bi cherry socola, dâu tây Đà Lạt, nấm hương tươi và bí đỏ hồ lô. Đầy đủ dưỡng chất cho gia đình 4 người trong cả tuần.
+                        </p>
+
+                        <!-- Live Countdown Timer -->
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="countdown-item">
+                                <div class="countdown-num" id="countdownHours">08</div>
+                                <div class="countdown-label">Giờ</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-num" id="countdownMins">45</div>
+                                <div class="countdown-label">Phút</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-num" id="countdownSecs">12</div>
+                                <div class="countdown-label">Giây</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3">
+                            <button class="btn btn-warning btn-lg rounded-pill px-4 py-3 fw-bold text-dark d-inline-flex align-items-center gap-2" onclick="addCustomDealToCart()">
+                                <i class="bi bi-bag-plus-fill"></i> Mua Với Giá 289.000₫ <s class="text-secondary small fw-normal ms-1">399.000₫</s>
+                            </button>
+                            <span class="badge bg-danger p-2 rounded-3">-28% OFF</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 text-center position-relative">
+                        <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=700&q=80" alt="Organic Box" class="img-fluid rounded-4 shadow-lg border border-3 border-white-50">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT / WHY CHOOSE US -->
+    <section class="py-5 bg-white" id="about">
+        <div class="container py-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=800&q=80" alt="Nông trại BioFresh" class="img-fluid rounded-4 shadow">
+                        <div class="p-3 bg-white rounded-3 shadow position-absolute bottom-0 end-0 m-3 d-none d-sm-block border">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-geo-alt-fill text-danger fs-4"></i>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Nông Trại Đơn Dương, Lâm Đồng</h6>
+                                    <small class="text-muted">Độ cao 1.500m so với mực nước biển</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-semibold mb-2">Triết Lý Xanh</span>
+                    <h2 class="display-6 fw-bold mb-3">Tôn Trọng Đất Mẹ Để Gặt Hái Vị Tự Nhiên Nhất</h2>
+                    <p class="text-muted mb-4">
+                        Tại BioFresh, chúng tôi nuôi dưỡng đất bằng phân vi sinh hữu cơ ủ hoai mục, tưới bằng nguồn nước ngầm thanh lọc tự nhiên và kiểm soát sâu bọ bằng thiên địch sinh thái. Không có bất kỳ chất kích thích tăng trưởng nào được can thiệp vào quá trình lớn lên của cây.
+                    </p>
+
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-success-subtle text-success rounded-circle p-2 fs-5"><i class="bi bi-check2-circle"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Đất & Nước Đạt Chuẩn</h6>
+                                    <p class="text-muted small mb-0">Kiểm nghiệm định kỳ không chứa kim loại nặng và dư lượng nitrat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-success-subtle text-success rounded-circle p-2 fs-5"><i class="bi bi-shield-lock"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Mã QR Minh Bạch</h6>
+                                    <p class="text-muted small mb-0">Mỗi gói sản phẩm đều có mã truy xuất nhật ký gieo trồng và thu hoạch.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-success-subtle text-success rounded-circle p-2 fs-5"><i class="bi bi-heart-pulse"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Thuần Khiết Dinh Dưỡng</h6>
+                                    <p class="text-muted small mb-0">Hàm lượng chất chống oxy hóa tự nhiên cao hơn 30% so với nông nghiệp vô cơ thông thường.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-success-subtle text-success rounded-circle p-2 fs-5"><i class="bi bi-emoji-smile"></i></div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Trách Nhiệm Nông Dân</h6>
+                                    <p class="text-muted small mb-0">Bảo vệ sức khỏe trực tiếp của người nông dân canh tác trên đất.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-5" id="reviews">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-semibold mb-2">Phản Hồi Chân Thực</span>
+                <h2 class="display-6 fw-bold">Khách Hàng Nói Về BioFresh</h2>
+                <p class="text-muted">Đồng hành cùng hàng ngàn tổ ấm trên hành trình sống lành mạnh</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="rating-stars mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-muted mb-4">
+                            "Rau cải xoăn Kale và cà chua bi của BioFresh ngọt tự nhiên, để tủ lạnh cả tuần vẫn tươi nguyên không hề bị úng như rau ở siêu thị thông thường. Cả nhà mình rất an tâm!"
+                        </p>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Chị Minh Anh" class="user-avatar">
+                            <div>
+                                <h6 class="fw-bold mb-0">Chị Minh Anh</h6>
+                                <small class="text-muted">Chuyên gia dinh dưỡng tại TP.HCM</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="rating-stars mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-muted mb-4">
+                            "Dịch vụ giao hàng 2h cực kỳ chuẩn xác, đóng gói túi bột ngô phân hủy rất nhân văn và sạch sẽ. Táo Envy và nho ngón tay giòn đượm vị hữu cơ thật sự."
+                        </p>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Anh Hoàng Nam" class="user-avatar">
+                            <div>
+                                <h6 class="fw-bold mb-0">Anh Hoàng Nam</h6>
+                                <small class="text-muted">Huấn luyện viên Fitness</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="rating-stars mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-muted mb-4">
+                            "Mình đăng ký gói Combo tuần cho bé nhỏ ăn dặm. Bé thích mê vị nước ép cần tây táo của shop. Cảm ơn BioFresh đã mang tới thực phẩm sạch đúng nghĩa!"
+                        </p>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Chị Thảo Vy" class="user-avatar">
+                            <div>
+                                <h6 class="fw-bold mb-0">Chị Thảo Vy</h6>
+                                <small class="text-muted">Khách hàng thành viên Gold</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER SECTION -->
+    <section class="py-5">
+        <div class="container">
+            <div class="newsletter-box">
+                <div class="row align-items-center g-4 text-center text-lg-start">
+                    <div class="col-lg-6">
+                        <h3 class="fw-bold text-success display-6 mb-2">Đăng Ký Nhận Cẩm Nang Sống Xanh</h3>
+                        <p class="text-dark mb-0">Nhận ngay mã giảm <strong>50.000₫</strong> cho đơn hàng thực phẩm đầu tiên và các công thức thực dưỡng mỗi tuần.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <form onsubmit="handleNewsletterSubmit(event)" class="d-flex flex-column flex-sm-row gap-2">
+                            <input type="email" required placeholder="Nhập địa chỉ email của bạn..." class="form-control form-control-lg rounded-pill px-4 border-0 shadow-sm">
+                            <button type="submit" class="btn btn-success btn-lg rounded-pill px-4 fw-semibold text-nowrap shadow-sm">
+                                Đăng Ký Ngay
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-dark pt-5 pb-4 mt-5">
+        <div class="container pb-4 border-bottom border-secondary border-opacity-25">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="bg-success text-white rounded-circle p-2 d-inline-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                            <i class="bi bi-flower1"></i>
+                        </span>
+                        <span class="fw-bold fs-4 text-white" style="font-family: 'Playfair Display', serif;">BioFresh Organic</span>
+                    </div>
+                    <p class="text-muted mb-3">
+                        Hệ sinh thái cung ứng thực phẩm hữu cơ chuẩn quốc tế, kết nối trực tiếp những nông trại xanh lành đến căn bếp của từng gia đình Việt Nam.
+                    </p>
+                    <div class="d-flex">
+                        <a href="#" class="footer-social-btn"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="footer-social-btn"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="footer-social-btn"><i class="bi bi-tiktok"></i></a>
+                        <a href="#" class="footer-social-btn"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-white fw-bold mb-3">Về BioFresh</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#about">Câu chuyện thương hiệu</a></li>
+                        <li><a href="#about">Tiêu chuẩn chứng nhận</a></li>
+                        <li><a href="#deal">Hợp tác nông hộ</a></li>
+                        <li><a href="#">Hệ thống cửa hàng</a></li>
+                        <li><a href="#">Tuyển dụng tài năng</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-white fw-bold mb-3">Chính Sách Khách Hàng</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#">Chính sách giao hàng 2h</a></li>
+                        <li><a href="#">Đổi trả & Hoàn tiền 100%</a></li>
+                        <li><a href="#">Chương trình tích điểm BioPoints</a></li>
+                        <li><a href="#">Bảo mật thông tin khách hàng</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6" id="hotline">
+                    <h6 class="text-white fw-bold mb-3">Liên Hệ & Hỗ Trợ</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 text-muted">
+                        <li><i class="bi bi-geo-alt-fill text-success me-2"></i> 168 Nguyễn Văn Hưởng, P. Thảo Điền, TP. Thủ Đức, TP.HCM</li>
+                        <li><i class="bi bi-telephone-fill text-success me-2"></i> Tổng đài: 1900 888 686 (8:00 - 21:00)</li>
+                        <li><i class="bi bi-envelope-fill text-success me-2"></i> contact@biofresh.vn</li>
+                        <li><i class="bi bi-patch-check-fill text-success me-2"></i> Giấy phép ATTP: Số 245/2023/BQLATTP</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+            <p class="mb-0 text-muted small">© 2026 BioFresh Organic Mart. Bảo lưu toàn bộ quyền.</p>
+            <div class="d-flex align-items-center gap-3 text-muted small">
+                <span>Chứng nhận:</span>
+                <span class="badge bg-dark border text-light"><i class="bi bi-award me-1"></i> USDA Organic</span>
+                <span class="badge bg-dark border text-light"><i class="bi bi-check-all me-1"></i> EU Agriculture</span>
+                <span class="badge bg-dark border text-light"><i class="bi bi-shield-shaded me-1"></i> GlobalGAP</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- OFFCANVAS SHOPPING CART -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold text-success d-flex align-items-center gap-2" id="cartOffcanvasLabel">
+                <i class="bi bi-basket2-fill"></i> Giỏ Hàng Của Bạn (<span id="cartCountHeader">0</span>)
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between">
+            <!-- List of items -->
+            <div id="cartItemsList" class="overflow-y-auto pe-1">
+                <!-- Javascript will render cart items here -->
+            </div>
+
+            <!-- Footer of Cart -->
+            <div class="border-top pt-3 mt-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-muted">Tạm tính:</span>
+                    <span class="fw-bold fs-5 text-dark" id="cartSubtotal">0 ₫</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted small">Phí vận chuyển:</span>
+                    <span class="text-success small fw-semibold">Miễn phí giao hàng</span>
+                </div>
+                <button class="btn btn-success w-100 py-3 rounded-pill fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2 mb-2" onclick="handleCheckout()">
+                    Tiến Hành Thanh Toán <i class="bi bi-arrow-right"></i>
+                </button>
+                <button class="btn btn-outline-secondary btn-sm w-100 rounded-pill" data-bs-dismiss="offcanvas">
+                    Tiếp tục mua hàng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUICK VIEW MODAL -->
+    <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 pt-1" id="quickViewModalBody">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH MODAL -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 p-3 shadow-lg">
+                <div class="modal-header border-0 pb-2">
+                    <h5 class="modal-title fw-bold text-success"><i class="bi bi-search me-2"></i>Tìm Kiếm Sản Phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <input type="text" id="searchInput" class="form-control form-control-lg rounded-start-pill ps-3" placeholder="Nhập tên rau, củ, quả, hạt..." oninput="handleSearch(this.value)">
+                        <button class="btn btn-success rounded-end-pill px-4" type="button"><i class="bi bi-search"></i></button>
+                    </div>
+                    <div class="small text-muted mb-2">Gợi ý tìm nhanh:</div>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-light text-dark border p-2 cursor-pointer" style="cursor: pointer;" onclick="searchQuick('Cải xoăn')">Cải xoăn Kale</span>
+                        <span class="badge bg-light text-dark border p-2 cursor-pointer" style="cursor: pointer;" onclick="searchQuick('Bơ')">Bơ sáp 034</span>
+                        <span class="badge bg-light text-dark border p-2 cursor-pointer" style="cursor: pointer;" onclick="searchQuick('Dâu')">Dâu tây giống Nhật</span>
+                        <span class="badge bg-light text-dark border p-2 cursor-pointer" style="cursor: pointer;" onclick="searchQuick('Hạt óc chó')">Hạt óc chó Mỹ</span>
+                    </div>
+                    <div id="searchResultsList" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast align-items-center text-bg-success border-0 rounded-4 shadow" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body d-flex align-items-center gap-2">
+                    <i class="bi bi-check-circle-fill fs-5"></i>
+                    <span id="toastMessage">Đã thêm sản phẩm vào giỏ hàng!</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CORE JAVASCRIPT LOGIC -->
+    <script>
+        // Sample Products Database
+        const products = [
+            {
+                id: 1,
+                name: "Cải Xoăn Kale Hữu Cơ Đà Lạt",
+                category: "vegetable",
+                categoryName: "Rau Lá Hữu Cơ",
+                price: 45000,
+                oldPrice: 58000,
+                unit: "Túi 500g",
+                rating: 4.9,
+                reviewsCount: 142,
+                image: "https://images.unsplash.com/photo-1524179091875-bf99a9a6af57?auto=format&fit=crop&w=600&q=80",
+                badge: "Organic 100%",
+                discount: "-22%",
+                description: "Giàu chất chống oxy hóa, canxi thực vật và vitamin K. Được thu hoạch tại vườn hữu cơ Đơn Dương vào 5h sáng, đóng gói giữ trọn độ giòn."
+            },
+            {
+                id: 2,
+                name: "Cà Chua Bi Cherry Socola",
+                category: "vegetable",
+                categoryName: "Củ & Quả Tươi",
+                price: 52000,
+                oldPrice: 65000,
+                unit: "Hộp 400g",
+                rating: 5.0,
+                reviewsCount: 98,
+                image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80",
+                badge: "Best Seller",
+                discount: "-20%",
+                description: "Vị ngọt thanh mọng nước, vỏ mỏng giòn thơm, hàm lượng lycopene cao gấp 3 lần cà chua thông thường."
+            },
+            {
+                id: 3,
+                name: "Bơ Sáp 034 Đặc Sản Lâm Đồng",
+                category: "fruit",
+                categoryName: "Trái Cây Nhiệt Đới",
+                price: 85000,
+                oldPrice: 110000,
+                unit: "Kg",
+                rating: 4.8,
+                reviewsCount: 210,
+                image: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=600&q=80",
+                badge: "Organic 100%",
+                discount: "-23%",
+                description: "Cơm vàng dẻo quánh, vị béo ngậy tự nhiên, hạt lép thuôn dài. Không sử dụng thuốc thúc chín ép."
+            },
+            {
+                id: 4,
+                name: "Dâu Tây Giống Nhật Hái Tại Vườn",
+                category: "fruit",
+                categoryName: "Trái Cây Tươi",
+                price: 145000,
+                oldPrice: 180000,
+                unit: "Hộp 350g",
+                rating: 4.9,
+                reviewsCount: 164,
+                image: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=600&q=80",
+                badge: "Hái Sáng Nay",
+                discount: "-19%",
+                description: "Hương thơm nồng nàn quyến rũ, vị ngọt thanh tự nhiên, trồng phương pháp giá thể xơ dừa vi sinh không tiếp xúc hóa chất độc hại."
+            },
+            {
+                id: 5,
+                name: "Hạt Óc Chó Vàng Organic Nhập Khẩu",
+                category: "nuts",
+                categoryName: "Hạt Dinh Dưỡng",
+                price: 165000,
+                oldPrice: 210000,
+                unit: "Hũ 500g",
+                rating: 4.9,
+                reviewsCount: 88,
+                image: "https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80",
+                badge: "Nhập Khẩu",
+                discount: "-21%",
+                description: "Giàu Omega-3 phát triển trí não, sấy nhiệt độ thấp giữ trọn vẹn tinh dầu và vị béo bùi thơm ngậy."
+            },
+            {
+                id: 6,
+                name: "Hạnh Nhân Rang Mộc Tự Nhiên",
+                category: "nuts",
+                categoryName: "Hạt Dinh Dưỡng",
+                price: 135000,
+                oldPrice: 160000,
+                unit: "Hũ 450g",
+                rating: 4.7,
+                reviewsCount: 76,
+                image: "https://images.unsplash.com/photo-1508061252966-f72fb98abc22?auto=format&fit=crop&w=600&q=80",
+                badge: "Nguyên Vị",
+                discount: "-15%",
+                description: "Không tẩm ướp muối hay chất bảo quản, hạt tuyển chọn kích cỡ lớn, ăn kiêng eat clean tuyệt đối lành mạnh."
+            },
+            {
+                id: 7,
+                name: "Nước Ép Cần Tây - Táo Xanh Nguyên Chất",
+                category: "drinks",
+                categoryName: "Nước Ép & Trà",
+                price: 49000,
+                oldPrice: 65000,
+                unit: "Chai thủy tinh 330ml",
+                rating: 5.0,
+                reviewsCount: 112,
+                image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80",
+                badge: "Ép Lạnh Cold-Pressed",
+                discount: "-25%",
+                description: "Công nghệ ép lạnh thủy lực bảo toàn 100% enzyme thực vật, thanh lọc cơ thể và hỗ trợ giữ dáng mịn da."
+            },
+            {
+                id: 8,
+                name: "Mật Ong Rừng Hoa Tràm Hữu Cơ",
+                category: "spices",
+                categoryName: "Gia Vị Thuần Tự Nhiên",
+                price: 195000,
+                oldPrice: 240000,
+                unit: "Chai 500ml",
+                rating: 4.9,
+                reviewsCount: 94,
+                image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80",
+                badge: "Organic 100%",
+                discount: "-18%",
+                description: "Mật sánh đặc vàng óng thơm dịu mùi hoa tràm, thu hoạch bền vững không làm tổn hại đến bầy ong tự nhiên."
+            }
+        ];
+
+        // Shopping Cart State
+        let cart = [
+            {
+                id: 1,
+                name: "Cải Xoăn Kale Hữu Cơ Đà Lạt",
+                price: 45000,
+                unit: "Túi 500g",
+                image: "https://images.unsplash.com/photo-1524179091875-bf99a9a6af57?auto=format&fit=crop&w=600&q=80",
+                quantity: 2
+            },
+            {
+                id: 3,
+                name: "Bơ Sáp 034 Đặc Sản Lâm Đồng",
+                price: 85000,
+                unit: "Kg",
+                image: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=600&q=80",
+                quantity: 1
+            }
+        ];
+
+        // Format Currency Helper
+        function formatVND(amount) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+        }
+
+        // Render Product Cards
+        function renderProducts(items) {
+            const container = document.getElementById('productGridContainer');
+            if (!container) return;
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="bi bi-emoji-neutral fs-1 text-muted"></i>
+                        <p class="mt-2 text-muted">Không tìm thấy sản phẩm phù hợp.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = items.map(product => `
+                <div class="col">
+                    <div class="product-card">
+                        <div class="product-thumb-wrap">
+                            <span class="product-badge-organic">${product.badge}</span>
+                            <span class="product-badge-sale">${product.discount}</span>
+                            <img src="${product.image}" alt="${product.name}" class="product-thumb" loading="lazy">
+                            
+                            <div class="quick-action-btns">
+                                <button class="quick-btn" title="Xem nhanh" onclick="openQuickView(${product.id})">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                                <button class="quick-btn" title="Thêm vào yêu thích" onclick="showToast('Đã lưu vào danh sách yêu thích!')">
+                                    <i class="bi bi-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="product-body">
+                            <span class="product-category-name">${product.categoryName}</span>
+                            <h3 class="product-title" title="${product.name}">${product.name}</h3>
+                            
+                            <div class="d-flex align-items-center gap-1 mb-2">
+                                <span class="rating-stars">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                                <span class="small text-muted">(${product.reviewsCount})</span>
+                            </div>
+
+                            <div class="d-flex align-items-baseline mb-3">
+                                <span class="price-current">${formatVND(product.price)}</span>
+                                <span class="price-old">${formatVND(product.oldPrice)}</span>
+                                <span class="unit-label">/${product.unit}</span>
+                            </div>
+
+                            <button class="btn-add-cart mt-auto" onclick="addToCart(${product.id})">
+                                <i class="bi bi-cart-plus"></i> Thêm Giỏ Hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter by category
+        function filterCategory(category, buttonElement) {
+            if (buttonElement) {
+                document.querySelectorAll('#filterButtonGroup .filter-btn').forEach(btn => btn.classList.remove('active'));
+                buttonElement.classList.add('active');
+            }
+
+            if (category === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // Add Product to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    unit: product.unit,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            showToast(`Đã thêm "${product.name}" vào giỏ!`);
+        }
+
+        // Add Custom Deal to Cart
+        function addCustomDealToCart() {
+            const dealItem = {
+                id: 999,
+                name: "Combo Hộp Rau Củ Hữu Cơ Tuần",
+                price: 289000,
+                unit: "Combo 7 món",
+                image: "https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=600&q=80",
+                quantity: 1
+            };
+
+            const existing = cart.find(item => item.id === dealItem.id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push(dealItem);
+            }
+
+            updateCartUI();
+            showToast("Đã thêm Combo Nông Trại Ưu Đãi vào giỏ!");
+        }
+
+        // Adjust Cart Quantity
+        function changeQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== productId);
+            }
+            updateCartUI();
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(i => i.id !== productId);
+            updateCartUI();
+        }
+
+        // Update Cart Offcanvas and Badges
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItemsList');
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // Update badges
+            document.getElementById('cartBadgeCount').innerText = totalCount;
+            document.getElementById('cartCountHeader').innerText = totalCount;
+            document.getElementById('cartSubtotal').innerText = formatVND(subtotal);
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="bi bi-cart-x fs-1 text-muted"></i>
+                        <p class="mt-3 text-muted">Giỏ hàng của bạn đang trống</p>
+                        <a href="#products" class="btn btn-sm btn-outline-success rounded-pill px-3" data-bs-dismiss="offcanvas">Khám phá sản phẩm</a>
+                    </div>
+                `;
+                return;
+            }
+
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item-row">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1 text-dark fw-bold small text-truncate" style="max-width: 170px;">${item.name}</h6>
+                        <div class="text-success fw-bold small">${formatVND(item.price)}</div>
+                        <div class="d-flex align-items-center gap-2 mt-2">
+                            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                            <span class="small fw-semibold">${item.quantity}</span>
+                            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-link text-danger p-0 ms-2" onclick="removeFromCart(${item.id})" title="Xoá">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Open Quick View Modal
+        function openQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const modalBody = document.getElementById('quickViewModalBody');
+            modalBody.innerHTML = `
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6">
+                        <img src="${product.image}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 380px; object-fit: cover;">
+                    </div>
+                    <div class="col-md-6">
+                        <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill fw-semibold mb-2">${product.badge}</span>
+                        <h4 class="fw-bold mb-2">${product.name}</h4>
+                        
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="rating-stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="text-muted small">(${product.reviewsCount} đánh giá từ nông trại)</span>
+                        </div>
+
+                        <div class="d-flex align-items-baseline gap-2 mb-3">
+                            <span class="fs-3 fw-bold text-success">${formatVND(product.price)}</span>
+                            <span class="text-muted text-decoration-line-through">${formatVND(product.oldPrice)}</span>
+                            <span class="badge bg-danger-subtle text-danger">${product.discount}</span>
+                        </div>
+
+                        <p class="text-muted small mb-4">${product.description}</p>
+
+                        <div class="p-3 bg-light rounded-3 mb-4 small">
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <i class="bi bi-shield-check text-success"></i> <strong>Chứng nhận:</strong> USDA Organic & VietGAP
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-clock-history text-success"></i> <strong>Thời gian bảo quản:</strong> 5-7 ngày trong ngăn mát
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-success flex-grow-1 py-2 rounded-pill fw-semibold" onclick="addToCart(${product.id}); bootstrap.Modal.getInstance(document.getElementById('quickViewModal')).hide();">
+                                <i class="bi bi-cart-plus me-1"></i> Thêm Vào Giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const quickViewModal = new bootstrap.Modal(document.getElementById('quickViewModal'));
+            quickViewModal.show();
+        }
+
+        // Live Countdown Timer logic
+        function startCountdown() {
+            let totalSeconds = (8 * 3600) + (45 * 60) + 12;
+
+            setInterval(() => {
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+
+                    document.getElementById('countdownHours').innerText = String(hours).padStart(2, '0');
+                    document.getElementById('countdownMins').innerText = String(minutes).padStart(2, '0');
+                    document.getElementById('countdownSecs').innerText = String(seconds).padStart(2, '0');
+                }
+            }, 1000);
+        }
+
+        // Search in Modal
+        function handleSearch(query) {
+            const list = document.getElementById('searchResultsList');
+            if (!query.trim()) {
+                list.innerHTML = '';
+                return;
+            }
+
+            const results = products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || p.categoryName.toLowerCase().includes(query.toLowerCase()));
+            if (results.length === 0) {
+                list.innerHTML = '<div class="text-muted small py-2">Không tìm thấy sản phẩm phù hợp.</div>';
+                return;
+            }
+
+            list.innerHTML = results.map(item => `
+                <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="${item.image}" alt="${item.name}" class="rounded-3" style="width: 48px; height: 48px; object-fit: cover;">
+                        <div>
+                            <div class="fw-semibold small text-dark">${item.name}</div>
+                            <div class="text-success small fw-bold">${formatVND(item.price)}</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline-success rounded-pill" onclick="addToCart(${item.id}); bootstrap.Modal.getInstance(document.getElementById('searchModal')).hide();">
+                        <i class="bi bi-cart-plus"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function searchQuick(keyword) {
+            const input = document.getElementById('searchInput');
+            input.value = keyword;
+            handleSearch(keyword);
+        }
+
+        // Show Toast Notifications
+        function showToast(msg) {
+            const toastEl = document.getElementById('liveToast');
+            document.getElementById('toastMessage').innerText = msg;
+            const toast = new bootstrap.Toast(toastEl, { delay: 2800 });
+            toast.show();
+        }
+
+        // Newsletter form
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            showToast("Chúc mừng! Mã giảm giá 50.000₫ đã gửi đến hòm thư của bạn.");
+            e.target.reset();
+        }
+
+        // Checkout Button trigger
+        function handleCheckout() {
+            if (cart.length === 0) {
+                showToast("Giỏ hàng của bạn đang trống!");
+                return;
+            }
+            alert("Cảm ơn bạn đã lựa chọn BioFresh Organic!\nĐơn hàng demo đã sẵn sàng để tích hợp cổng thanh toán.");
+        }
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            updateCartUI();
+            startCountdown();
+        });
+    </script>
+</body>
+</html>
